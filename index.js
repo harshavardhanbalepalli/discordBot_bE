@@ -3,8 +3,7 @@ const { GoogleGenerativeAI } = require('@google/generative-ai');
 
 require('dotenv').config();
 
-//Acitivty status bar
-client.user.setActivity('with Gemini AI', { type: ActivityType.Playing });
+
 
 //initialise gemini
 const genai = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
@@ -13,10 +12,13 @@ const model = genai.getGenerativeModel({ model: "gemini-2.5-flash-lite" });
 //Initilise client
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] });
 
+
+
 client.on("messageCreate", async (message)=>{
     //ignore the bot message 
     if(message.author.bot) return;
     console.log(message.content);
+
 
     //if the message start with !ai we do not reply with ai we sent this text instead..
     if (message.content.startsWith("!ai ")) {
@@ -43,6 +45,8 @@ client.on("messageCreate", async (message)=>{
         console.log("Gemini error:", error);
         message.reply("Sorry I've encountered a problem while processing your request");
     }
+        //Acitivty status bar
+client.user.setActivity('with Gemini AI', { type: ActivityType.Playing });
 });
 
 client.on("interactionCreate", (interaction)=>{
