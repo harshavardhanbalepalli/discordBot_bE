@@ -1,0 +1,17 @@
+{
+  "name": "discordbot_be",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "discord.js": "^14.25.1",
+    "dotenv": "^17.3.1"
+  }
+}
