@@ -3,11 +3,14 @@ const { GoogleGenerativeAI } = require('@google/generative-ai');
 
 require('dotenv').config();
 
-//initial gemini
+//Acitivty status bar
+client.user.setActivity('with Gemini AI', { type: ActivityType.Playing });
+
+//initialise gemini
 const genai = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const model = genai.getGenerativeModel({ model: "gemini-2.5-flash-lite" });
 
-//Initilase client
+//Initilise client
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] });
 
 client.on("messageCreate", async (message)=>{
