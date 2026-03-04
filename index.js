@@ -1,4 +1,4 @@
-const { Client, GatewayIntentBits } = require('discord.js');
+const { Client, GatewayIntentBits} = require('discord.js');
 const { GoogleGenerativeAI } = require('@google/generative-ai');
 
 require('dotenv').config();
@@ -10,7 +10,7 @@ const genai = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const model = genai.getGenerativeModel({ model: "gemini-2.5-flash-lite" });
 
 //Initilise client
-const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] });
+const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent, GatewayIntentBits.GuildPresences,] });
 
 
 
@@ -45,8 +45,6 @@ client.on("messageCreate", async (message)=>{
         console.log("Gemini error:", error);
         message.reply("Sorry I've encountered a problem while processing your request");
     }
-        //Acitivty status bar
-client.user.setActivity('with Gemini AI', { type: ActivityType.Playing });
 });
 
 client.on("interactionCreate", (interaction)=>{
